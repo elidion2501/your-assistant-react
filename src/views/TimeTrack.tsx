@@ -1,22 +1,22 @@
-import { Redirect } from 'react-router'
+import React from 'react'
+import { Redirect } from 'react-router';
 
 interface Props {
-    checkAuth: () => void
+
 }
 
-const Home = (props: Props) => {
-
+const TimeTrack = (props: Props) => {
     const user = localStorage.getItem('user');
 
     if (!user) {
         return <Redirect to={"/login"} />
     }
-
+    
     return (
         <div>
-            <h1> Home </h1>
+
         </div>
     )
 }
 
-export default Home
+export default TimeTrack

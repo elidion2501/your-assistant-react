@@ -1,17 +1,15 @@
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
-import { useAppDispatch } from '../../redux/store.hooks';
-import { addUser, getUser } from '../../redux/User/user.slice';
+import { Redirect } from 'react-router';
 import { FailedLogin, SuccessLogin, User, UserLogin } from '../../types';
 
 interface Props {
-
+    checkAuth: () => void
 }
 
 const Input = (props: Props) => {
     const axios = require('axios');
-    const dispatch = useAppDispatch();
-
+    const [redirectToReferrer, setRedirectToReferrer] = useState(false);
     const ruleForEmail = {
         required: { value: true, message: "Email is required." },
         maxLength: { value: 255, message: "Email max length is 255." },
@@ -42,10 +40,18 @@ const Input = (props: Props) => {
             } else {
                 let succesResponse: SuccessLogin = response;
                 let user: User = succesResponse.data.data;
-                dispatch(addUser(user));
-                console.log(user);
+                localStorage.setItem('user', JSON.stringify(user));
+                setRedirectToReferrer(true);
+                props.checkAuth()
+                return (<Redirect exact to="/" />)
             }
         });
+    }
+
+
+
+    if (redirectToReferrer) {
+        return <Redirect to={'/'} />;
     }
 
     return (

@@ -1,6 +1,8 @@
 import { useForm, SubmitHandler } from "react-hook-form";
+import { Redirect } from "react-router";
 import { FailedLogin, SuccessLogin, User, UserSignUp } from '../../types';
 interface Props {
+    checkAuth: () => void
 }
 
 const Input = (props: Props) => {
@@ -48,6 +50,10 @@ const Input = (props: Props) => {
             } else {
                 let succesResponse: SuccessLogin = response;
                 let user: User = succesResponse.data.data;
+                localStorage.setItem('user', JSON.stringify(user));
+                props.checkAuth()
+                return <Redirect to={"/"} />
+
             }
         });
     }
