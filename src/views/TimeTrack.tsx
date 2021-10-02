@@ -1,8 +1,9 @@
 import React from 'react'
 import { Redirect } from 'react-router';
+import TimeTrackList from '../components/TimeTrack/TimeTrackList';
+import TimeTrackNavigation from '../components/TimeTrack/TimeTrackNavigation';
 
 interface Props {
-
 }
 
 const TimeTrack = (props: Props) => {
@@ -11,10 +12,13 @@ const TimeTrack = (props: Props) => {
     if (!user) {
         return <Redirect to={"/login"} />
     }
-    
+
+
     return (
         <div>
+            <TimeTrackNavigation />
 
+            <TimeTrackList />
         </div>
     )
 }

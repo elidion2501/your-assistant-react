@@ -3,7 +3,7 @@
 .App {
   text-align: center;
 }
-
+ 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -59,4 +59,17 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+td{
+  color: #7CFC00 !important;
+}
+
+th{
+  color: #ffff !important;
+  font-weight:normal !important;
+  font-size: 20px !important;
+}
+.cursor_pointer{
+  cursor: pointer;
 }
